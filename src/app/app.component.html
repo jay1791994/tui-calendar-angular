@@ -11,8 +11,9 @@
       {{ view.name }}
     </option>
   </select>
-
-
+<div class="overlap" *ngIf="viewSchedule">
+   <app-schedule-view [scheduleDiscription]="scheduleDiscription" (hideScheduleView)="hideScheduleView($event)"></app-schedule-view>
+</div>
 <ngx-tui-calendar #calendar
     (tuiCalendarCreated)="onTuiCalendarCreated($event)"
     [defaultView]= "defaultView"
@@ -21,5 +22,6 @@
     (scheduleClicked)="onSchedule($event)"
     (beforeCreateSchedule)="onBeforeCreateSchedule($event)"
     (beforeUpdateSchedule)="onUpdateSchedule($event)"
-    [schedules]="schedules">
+    [schedules]="schedules"
+    >
 </ngx-tui-calendar>

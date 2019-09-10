@@ -1,3 +1,21 @@
-<p>
-  schedule-view works!
-</p>
+
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            <h4 class="modal-title">{{scheduleDiscription.schedule.title}}</h4>
+          </div>
+          <div class="modal-body">
+            <p>Start Date: {{scheduleDiscription.schedule.start._date}}</p>
+            <p>End Date: {{scheduleDiscription.schedule.end._date}}</p>
+            <p>Discription: {{scheduleDiscription.discription}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="hideSchedule()">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    

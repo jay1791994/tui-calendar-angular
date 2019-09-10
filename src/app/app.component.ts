@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgxTuiCalendarComponent } from '../../projects/ngx-tui-calendar/src/lib';
 import { ClickDaynameEvent, BeforeCreateScheduleEvent } from '../../projects/ngx-tui-calendar/src/lib/Models/Events';
 import { Schedule } from '../../projects/ngx-tui-calendar/src/lib/Models/Schedule';
+import { ScheduleDiscription } from './models/ScheduleDiscription.model';
 
 @Component({
 	selector: 'app-root',
@@ -11,6 +12,8 @@ import { Schedule } from '../../projects/ngx-tui-calendar/src/lib/Models/Schedul
 export class AppComponent implements OnInit {
   
 	title = 'app';
+	viewSchedule: boolean = false;
+	scheduleDiscription: ScheduleDiscription = new ScheduleDiscription();
 
 
   @ViewChild('calendar') calendar: NgxTuiCalendarComponent;
@@ -83,8 +86,22 @@ export class AppComponent implements OnInit {
     console.log('dateTime', dateTime);
   }
 
-	onSchedule(schedule) {
-		console.log('schedule', schedule);
+	onSchedule(event) {
+ 
+		console.log(event)
+		this.scheduleDiscription.schedule = event.schedule;
+		this.scheduleDiscription.discription = "DISCRIPION IS HERE";
+		if(this.viewSchedule == false){
+			this.viewSchedule = true;
+		}
+		
+
+  
+	}
+
+
+	hideScheduleView(hideViewSchedule: boolean){
+		this.viewSchedule = hideViewSchedule;
 	}
 
 	onDateChange($event) {

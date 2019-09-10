@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ScheduleDiscription } from '../../models/ScheduleDiscription.model';
+
 
 @Component({
   selector: 'app-schedule-view',
@@ -10,10 +11,15 @@ export class ScheduleViewComponent implements OnInit {
 
 
   @Input() scheduleDiscription: ScheduleDiscription;
+  @Output() hideScheduleView: EventEmitter<boolean> = new EventEmitter();
   constructor() { }
-
   ngOnInit() {
-    console.log(this.scheduleDiscription);
+    
+  }
+
+
+  hideSchedule(){
+    this.hideScheduleView.emit(false);
   }
 
 }
