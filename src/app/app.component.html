@@ -1,3 +1,4 @@
+
 <input type="date" name="date" id="date" (change)="onDateChange($event)">
 <button (click)="onCalendarPrev()">
     previous
@@ -11,9 +12,8 @@
       {{ view.name }}
     </option>
   </select>
-<div class="overlap" *ngIf="viewSchedule">
-   <app-schedule-view [scheduleDiscription]="scheduleDiscription" (hideScheduleView)="hideScheduleView($event)"></app-schedule-view>
-</div>
+
+
 <ngx-tui-calendar #calendar
     (tuiCalendarCreated)="onTuiCalendarCreated($event)"
     [defaultView]= "defaultView"

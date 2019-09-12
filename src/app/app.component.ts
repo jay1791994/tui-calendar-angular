@@ -3,6 +3,9 @@ import { NgxTuiCalendarComponent } from '../../projects/ngx-tui-calendar/src/lib
 import { ClickDaynameEvent, BeforeCreateScheduleEvent } from '../../projects/ngx-tui-calendar/src/lib/Models/Events';
 import { Schedule } from '../../projects/ngx-tui-calendar/src/lib/Models/Schedule';
 import { ScheduleDiscription } from './models/ScheduleDiscription.model';
+import { ComponentInjectorService } from './services/component-injector.service';
+import { ScheduleViewComponent } from './components/schedule-view/schedule-view.component';
+import { createOfflineCompileUrlResolver } from '@angular/compiler';
 
 @Component({
 	selector: 'app-root',
@@ -14,7 +17,8 @@ export class AppComponent implements OnInit {
 	title = 'app';
 	viewSchedule: boolean = false;
 	scheduleDiscription: ScheduleDiscription = new ScheduleDiscription();
-
+	scheduleViewParent: Event ;
+    
 
   @ViewChild('calendar') calendar: NgxTuiCalendarComponent;
   schedules: Schedule[];
@@ -25,9 +29,9 @@ export class AppComponent implements OnInit {
 		{ value: '2', name: 'day' }
 	];
 
-	defaultView = 'week';
+	defaultView = 'month';
 
-	constructor() {
+	constructor(private _componentFactoryResolver: ComponentInjectorService ) {
   }
 
   ngOnInit(): void {
@@ -85,16 +89,43 @@ export class AppComponent implements OnInit {
   onTime(dateTime) {
     console.log('dateTime', dateTime);
   }
+	onSchedule($event) {
 
-	onSchedule(event) {
- 
-		console.log(event)
-		this.scheduleDiscription.schedule = event.schedule;
-		this.scheduleDiscription.discription = "DISCRIPION IS HERE";
-		if(this.viewSchedule == false){
-			this.viewSchedule = true;
+		let element = <HTMLElement>event.target;
+		element.style.overflow = "visible";
+
+		if(this.scheduleViewParent){
+		  
+			let parent = <HTMLElement>this.scheduleViewParent.target;
+			parent.removeChild(parent.lastChild);
+			
+			if(this.scheduleViewParent.target === element){
+			this.scheduleViewParent = undefined;
+			return;
+			}
+			this.scheduleViewParent = undefined;
+
 		}
-		
+
+		 
+			let scheduleDiscription = new ScheduleDiscription();
+			scheduleDiscription.schedule = $event.schedule;
+			scheduleDiscription.discription ="THIS IS THE DISCRIPTION";
+		    let componentRef = this._componentFactoryResolver.createComponent(ScheduleViewComponent,scheduleDiscription,element)
+			this.scheduleViewParent = event;
+	   // if(element.children.length == 0){
+		 
+		// 	let scheduleDiscription = new ScheduleDiscription();
+		// 	scheduleDiscription.schedule = $event.schedule;
+		// 	scheduleDiscription.discription ="THIS IS THE DISCRIPTION";
+		//     let componentRef = this._componentFactoryResolver.createComponent(ScheduleViewComponent,scheduleDiscription,element)
+		// 	this.scheduleViewParent = event;
+			
+	    //  }else{
+		//  	let eleRef =  <HTMLElement>event.target;
+		// 	eleRef.removeChild(eleRef.children[0]);
+		// }
+
 
   
 	}

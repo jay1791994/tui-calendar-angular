@@ -1,4 +1,6 @@
 .modal-dialog{
-    width:50%;
-    height: 20%;
+  width:500px;
+  z-index: 2;
+  overflow:auto;
 }
+

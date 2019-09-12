@@ -9,7 +9,7 @@ import { Schedule } from './Models/Schedule';
   selector: 'ngx-tui-calendar',
   template: ''
 })
-export class NgxTuiCalendarComponent implements OnChanges, TuiCalendarOptions {
+export class NgxTuiCalendarComponent implements  OnInit, OnChanges, TuiCalendarOptions {
 
   @Input() defaultView: string;
   @Input() taskView: boolean;
@@ -96,6 +96,11 @@ export class NgxTuiCalendarComponent implements OnChanges, TuiCalendarOptions {
       this.updateSchedules();
     }
   }
+
+  ngOnInit(){
+    this.tuiCalendar.changeView(this.defaultView);
+  }
+   
 
   private updateSchedules() {
     this.tuiCalendar.clear();

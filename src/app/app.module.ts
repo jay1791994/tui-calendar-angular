@@ -17,6 +17,7 @@ import { ScheduleViewComponent } from './components/schedule-view/schedule-view.
 		NgxTuiCalendarModule
 	],
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
+	entryComponents: [ScheduleViewComponent]
 })
 export class AppModule { }
