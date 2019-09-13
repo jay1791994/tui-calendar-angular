@@ -1,19 +1,22 @@
+<div class="container">
+    <div class="col-xs-2">
+       <input class="form-control"  type="date" name="date" id="date" (change)="onDateChange($event)">
+      </div>
 
-<input type="date" name="date" id="date" (change)="onDateChange($event)">
-<button (click)="onCalendarPrev()">
+<button  class="btn" (click)="onCalendarPrev()">
     previous
-</button>
-<button (click)="onCalendarNext()">
+</button>||
+<button class="btn" (click)="onCalendarNext()">
     next
 </button>
-
-<select placeholder="View" value="1" (change)="onChangeCalendarView($event)">
+<div class="col-xs-2">
+<select class="form-control"  placeholder="View" value="1" (change)="onChangeCalendarView($event)">
     <option *ngFor="let view of calendarViews" [value]="view.value">
       {{ view.name }}
     </option>
-  </select>
-
-
+</select>
+</div>
+</div>
 <ngx-tui-calendar #calendar
     (tuiCalendarCreated)="onTuiCalendarCreated($event)"
     [defaultView]= "defaultView"
@@ -23,5 +26,7 @@
     (beforeCreateSchedule)="onBeforeCreateSchedule($event)"
     (beforeUpdateSchedule)="onUpdateSchedule($event)"
     [schedules]="schedules"
+    (click)="onClickCalendar($event)"
     >
 </ngx-tui-calendar>
+

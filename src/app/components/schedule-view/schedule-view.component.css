@@ -1,6 +1,9 @@
 .modal-dialog{
-  width:500px;
+  width: 40em;
   z-index: 2;
   overflow:auto;
+  position: fixed;
+  top: 10%;
+  left: 30%;
 }
 

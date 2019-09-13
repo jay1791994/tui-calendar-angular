@@ -14,10 +14,11 @@ import { ScheduleViewComponent } from './components/schedule-view/schedule-view.
 	imports: [
 		BrowserModule,
 		FormsModule,
-		NgxTuiCalendarModule
+		NgxTuiCalendarModule,
+		
 	],
 	providers: [],
 	bootstrap: [AppComponent],
 	entryComponents: [ScheduleViewComponent]
 })
-export class AppModule { }
+export class AppModule {}
