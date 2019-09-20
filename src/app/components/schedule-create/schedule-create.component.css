@@ -1,0 +1,16 @@
+.modal-dialog{
+    width: 40em;
+    z-index: 21;
+    overflow:auto;
+    position: fixed;
+    top: 10%;
+    left: 30%;
+  }
+  
+  .modal-header{
+    background-color: skyblue;
+  }
+  .modal-footer{
+    background-color: pink;
+  }
+  

@@ -14,7 +14,8 @@ export class ScheduleViewComponent implements OnInit {
   @Output() hideScheduleView: EventEmitter<boolean> = new EventEmitter();
   constructor() { }
   ngOnInit() {
-    
+    console.log(this.scheduleDiscription);
+    console.log(this.scheduleDiscription.schedule);
   }
 
 

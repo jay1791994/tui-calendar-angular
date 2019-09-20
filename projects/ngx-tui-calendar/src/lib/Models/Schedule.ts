@@ -21,4 +21,5 @@ export interface Schedule {
   borderColor?: string
   customStyle?: string
   raw?: any
+  summary: string;
 }

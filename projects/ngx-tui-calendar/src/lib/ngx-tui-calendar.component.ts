@@ -85,24 +85,25 @@ export class NgxTuiCalendarComponent implements  OnInit, OnChanges, TuiCalendarO
     });
 
     this.tuiCalendar.on('clickSchedule', (event: ClickScheduleEvent) => {
+
       this.scheduleClicked.emit(event);
+      this.tuiCalendar.openCreationPopup(event.schedule);
+    
     });
 
   }
 
-
-  ngOnChanges(changes: SimpleChanges): void {
+    ngOnChanges(changes: SimpleChanges): void {
     if (changes["schedules"] !== undefined) {
       this.updateSchedules();
     }
   }
 
-  ngOnInit(){
-    this.tuiCalendar.changeView(this.defaultView);
-  }
+   ngOnInit(){
+  
+   }
    
-
-  private updateSchedules() {
+ private updateSchedules() {
     this.tuiCalendar.clear();
     this.tuiCalendar.createSchedules(this.schedules, true);
     this.tuiCalendar.render();
@@ -125,6 +126,7 @@ export class NgxTuiCalendarComponent implements  OnInit, OnChanges, TuiCalendarO
   }
 
   public createSchedules(schedules: any[]) {
+    
     this.tuiCalendar.createSchedules(schedules);
   }
 
@@ -181,6 +183,7 @@ export class NgxTuiCalendarComponent implements  OnInit, OnChanges, TuiCalendarO
   }
 
   public render() {
+    console.log("calendar rendered")
     this.tuiCalendar.render();
   }
 
@@ -221,7 +224,7 @@ export class NgxTuiCalendarComponent implements  OnInit, OnChanges, TuiCalendarO
   }
 
   public getCalender(): any{
-    return this.tuiCalendar;
+      return this.tuiCalendar;
   }
 
 }

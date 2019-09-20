@@ -3,7 +3,6 @@ import { Schedule } from "../../../projects/ngx-tui-calendar/src/lib/Models/Sche
 
 
 export class ScheduleDiscription{
-
     schedule:Schedule;
-    discription?: string;
+    summary?: string;
 }

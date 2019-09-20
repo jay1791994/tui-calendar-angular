@@ -1,5 +1,5 @@
  
-      <div class="modal-dialog">
+      <div class="modal-dialog" style="color:black">
       
 
         <div class="modal-content">
@@ -8,14 +8,13 @@
             <h4 class="modal-title">{{scheduleDiscription.schedule.title}}</h4>
           </div>
           <div class="modal-body">
-            <p>Start Date: {{scheduleDiscription.schedule.start._date}}</p>
-            <p>End Date: {{scheduleDiscription.schedule.end._date}}</p>
-            <p>Discription: {{scheduleDiscription.discription}}</p>
+            <p >Start Date: {{scheduleDiscription.schedule.start}}</p>
+            <p>End Date: {{scheduleDiscription.schedule.end}}</p>
+            <p>{{scheduleDiscription.schedule['summary']}}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" (click)="hideSchedule()">Close</button>
           </div>
         </div>
-        
-      </div>
+    </div>
       
