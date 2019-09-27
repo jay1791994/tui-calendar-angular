@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ScheduleDiscription } from '../../models/ScheduleDiscription.model';
+
 import { EventCaptureService } from '../../services/event-capture.service';
+import { Schedule } from '../../../../projects/ngx-tui-calendar/src/lib/Models/Schedule';
 
 @Component({
   selector: 'app-schedule-create',
@@ -11,7 +12,7 @@ export class ScheduleCreateComponent implements OnInit {
 
 
 
-  @Input() scheduleDiscription: ScheduleDiscription;
+  @Input() scheduleDiscription: Schedule;
   @Output() hideCreateScheduleEmitter: EventEmitter<boolean> = new EventEmitter();
 
   changeEndDate: boolean = false;
@@ -19,7 +20,7 @@ export class ScheduleCreateComponent implements OnInit {
   constructor(private _eventCapturer: EventCaptureService) { }
 
   ngOnInit() {
-
+       
   }
 
 
@@ -33,13 +34,13 @@ export class ScheduleCreateComponent implements OnInit {
 
   onChangeEndDate($event) {
 
-    console.log($event);
-    this.scheduleDiscription.schedule.end["_date"] = new Date($event.target.value);
+    this.scheduleDiscription.end["_date"] = new Date($event.target.value);
     this.changeEndDate = false;
 
   }
 
   createEvent() {
+    
      this._eventCapturer.createSchedule(this.scheduleDiscription);
   }
 

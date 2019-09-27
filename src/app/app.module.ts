@@ -25,6 +25,6 @@ import { DateTimeFormatPipe } from './pipes/date-time-format.pipe';
 	],
 	providers: [],
 	bootstrap: [AppComponent],
-	entryComponents: [ScheduleViewComponent, ScheduleCreateComponent]
+	entryComponents: [ScheduleViewComponent]
 })
 export class AppModule {}

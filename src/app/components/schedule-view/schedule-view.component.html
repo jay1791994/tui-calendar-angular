@@ -5,12 +5,12 @@
         <div class="modal-content">
           <div class="modal-header">
            
-            <h4 class="modal-title">{{scheduleDiscription.schedule.title}}</h4>
+            <h4 class="modal-title">{{scheduleDiscription.title}}</h4>
           </div>
           <div class="modal-body">
-            <p >Start Date: {{scheduleDiscription.schedule.start}}</p>
-            <p>End Date: {{scheduleDiscription.schedule.end}}</p>
-            <p>{{scheduleDiscription.schedule['summary']}}</p>
+            <p >Start Date: {{scheduleDiscription.start}}</p>
+            <p>End Date: {{scheduleDiscription.end}}</p>
+            <p>{{scheduleDiscription['summary']}}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" (click)="hideSchedule()">Close</button>

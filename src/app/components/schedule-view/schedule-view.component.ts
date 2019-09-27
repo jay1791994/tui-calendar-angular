@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ScheduleDiscription } from '../../models/ScheduleDiscription.model';
+import { Schedule } from '../../../../projects/ngx-tui-calendar/src/lib/Models/Schedule';
+
 
 
 @Component({
@@ -10,12 +11,11 @@ import { ScheduleDiscription } from '../../models/ScheduleDiscription.model';
 export class ScheduleViewComponent implements OnInit {
 
 
-  @Input() scheduleDiscription: ScheduleDiscription;
+  @Input() scheduleDiscription: Schedule;
   @Output() hideScheduleView: EventEmitter<boolean> = new EventEmitter();
   constructor() { }
   ngOnInit() {
-    console.log(this.scheduleDiscription);
-    console.log(this.scheduleDiscription.schedule);
+  
   }
 
 

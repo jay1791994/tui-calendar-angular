@@ -1,11 +1,11 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgxTuiCalendarComponent } from '../../projects/ngx-tui-calendar/src/lib';
 import { Schedule } from '../../projects/ngx-tui-calendar/src/lib/Models/Schedule';
-import { ScheduleDiscription } from './models/ScheduleDiscription.model';
+
 import { ComponentInjectorService } from './services/component-injector.service';
 import { ScheduleViewComponent } from './components/schedule-view/schedule-view.component';
 import { EventCaptureService } from './services/event-capture.service';
-import { HttpClientJsonpModule } from '@angular/common/http';
+
 
 
 @Component({
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
 	title = 'app';
 
-	scheduleDiscription = new ScheduleDiscription();
+	scheduleDiscription : Schedule;
 	scheduleViewParent: HTMLElement;
 	createNewEvent: boolean = false;
 
@@ -39,24 +39,24 @@ export class AppComponent implements OnInit {
 	ngOnInit(): void {
 
 		this.eventCapturer.getSchedules().subscribe(
-
-			(data) => {
+      	(data) => {
 				this.schedules = [];
 				
-				for (let i = 0; i < data.length; i++) {
+				for (let i = 10; i < 30; i++) {
  
                     if(data[i]['summary']){
 						data[i]['summary'] = data[i]['summary'];
 					}
 
 
-					if (data[i].hasOwnProperty('plannedStartDate') && data[i].plannedStartDate != "" && data[i].hasOwnProperty('CRNumber') && data[i].CRNumber != "" && data[i].hasOwnProperty('approvalStatus') && data[i].approvalStatus != "" ) {
+					if(data[i].hasOwnProperty('plannedStartDate') && data[i].plannedStartDate != "" && data[i].hasOwnProperty('CRNumber') && data[i].CRNumber != "" && data[i].hasOwnProperty('approvalStatus') && data[i].approvalStatus != "" ) {
 						data[i]['id'] = data[i]['id'];
 					                            
 						data[i]['calendarId'] = data[i]['id'];
 						data[i]['title'] = data[i]['CRNumber'] + " - " + data[i]['CRStatus'];
 						data[i]['start'] = (new Date(data[i]['plannedStartDate']));
-						data[i]['end'] = (new Date(data[i]['plannedEndDate']));
+						data[i]['end'] = new Date(data[i]['plannedEndDate']);
+
 						data[i]['category'] = "allday";
 						if (data[i]['CRStatus'] == "Approved") {
 							data[i]['bgColor'] = "green";
@@ -89,6 +89,7 @@ export class AppComponent implements OnInit {
 			err => {
 				console.log(err);
 			}
+			
 		)
 	}
 
@@ -101,10 +102,10 @@ export class AppComponent implements OnInit {
 
 	onBeforeCreateSchedule(event) {
 
-		this.scheduleDiscription = new ScheduleDiscription();
-		this.scheduleDiscription.schedule = <Schedule>new Object();
-		this.scheduleDiscription.schedule.start = event.start;
-		this.scheduleDiscription.schedule.end = event.end;
+		this.scheduleDiscription = <Schedule>Object();
+		this.scheduleDiscription.start = event.start;
+		this.scheduleDiscription.end = event.end;
+	    
 		this.createNewEvent = true;
 		this.scheduleViewParent = <HTMLElement>event.target;
 
@@ -132,16 +133,16 @@ export class AppComponent implements OnInit {
 
 
 	onDate(date) {
-	//	console.log('onDate', date);
+	 //console.log('onDate', date);
 	}
 
 	onTime(dateTime) {
-	//	console.log('dateTime', dateTime);
+		//console.log('dateTime', dateTime);
 	}
 	onSchedule($event) {
 
-		console.log($event)
-		var x = document.getElementsByTagName("span").length;
+	
+		
 		let element = <HTMLElement>event.target;
 		element.style.overflow = "visible";
 
@@ -158,11 +159,7 @@ export class AppComponent implements OnInit {
 
 		}
 
-	   
-
-		let scheduleDiscription = new ScheduleDiscription();
-		scheduleDiscription.schedule = $event.schedule;
-	
+		let scheduleDiscription = $event.schedule; 
 		let componentRef = this._componentFactoryResolver.createSchduleViewComponent(ScheduleViewComponent, scheduleDiscription, element)
 		this.scheduleViewParent = <HTMLElement>event.target;
 	}

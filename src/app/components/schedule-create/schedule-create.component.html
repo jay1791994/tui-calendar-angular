@@ -5,7 +5,7 @@
           <div class="container-fluid">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon3">EVENT NAME</span>
-                <input  [(ngModel)]='scheduleDiscription.schedule.title' title type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                <input  [(ngModel)]="scheduleDiscription['title']" title type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                 
               </div>
           </div>
@@ -14,15 +14,15 @@
 
               <div class="input-group">
                   <span class="input-group-addon">Start Date</span>
-                        <input  class="form-control" [ngModel]="scheduleDiscription.schedule.start._date| date: 'medium'" 
-              (ngModelChange)="scheduleDiscription.schedule.start._date=$event"  type="text" disabled />
+                        <input  class="form-control" [ngModel]="scheduleDiscription.start._date| date: 'medium'" 
+              (ngModelChange)="scheduleDiscription.start._date=$event"  type="text" disabled />
                </div>
                 <br/>
                 <div class="input-group">
                     <span class="input-group-addon">End Date</span>
                     <div style="display: inline">
-                    <input  class="form-control" [ngModel]="scheduleDiscription.schedule.end._date| date:'medium'" 
-                       (ngModelChange)="scheduleDiscription.schedule.end._date=$event" *ngIf="!changeEndDate"  type="text" (click)="changeEndDateHandler()"/>
+                    <input  class="form-control" [ngModel]="scheduleDiscription.end._date| date:'medium'" 
+                       (ngModelChange)="scheduleDiscription.end._date=$event" *ngIf="!changeEndDate"  type="text" (click)="changeEndDateHandler()"/>
                    <input *ngIf="changeEndDate" class="form-control" (change)="onChangeEndDate($event)" type="datetime-local" [min]="scheduleDiscription.schedule.start._date|date:'medium'"/>
                   
                    </div>
@@ -30,7 +30,7 @@
   
             <div class="form-group">
                 <label for="comment">Discription:</label>
-              <textarea  [(ngModel)]="scheduleDiscription.schedule['summary']"  class="form-control" rows="4" id="comment"></textarea>
+              <textarea  [(ngModel)]="scheduleDiscription['summary']"  class="form-control" rows="4" id="comment"></textarea>
             </div>
             <div>
             </div>

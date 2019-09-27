@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, Output, EventEmitter, AfterViewInit, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 
-import * as Calendar from 'tui-calendar';
+import * as Calendar from './tui-calendar';
 import { TuiCalendarOptions, TuiCalendarDefaults } from './ngx-tui-calendar-defaults.service';
 import { AfterRenderScheduleEvent, BeforeCreateScheduleEvent, BeforeDeleteScheduleEvent, BeforeUpdateScheduleEvent, ClickDaynameEvent, ClickScheduleEvent } from './Models/Events';
 import { Schedule } from './Models/Schedule';
@@ -94,15 +94,23 @@ export class NgxTuiCalendarComponent implements  OnInit, OnChanges, TuiCalendarO
   }
 
     ngOnChanges(changes: SimpleChanges): void {
+
     if (changes["schedules"] !== undefined) {
       this.updateSchedules();
+      
     }
+
   }
 
-   ngOnInit(){
   
-   }
-   
+    ngOnInit(){
+
+    }
+
+    ngOnViewInit(){
+     
+    }
+
  private updateSchedules() {
     this.tuiCalendar.clear();
     this.tuiCalendar.createSchedules(this.schedules, true);
@@ -183,7 +191,7 @@ export class NgxTuiCalendarComponent implements  OnInit, OnChanges, TuiCalendarO
   }
 
   public render() {
-    console.log("calendar rendered")
+    
     this.tuiCalendar.render();
   }
 

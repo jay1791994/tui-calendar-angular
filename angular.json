@@ -22,7 +22,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/tui-calendar/dist/tui-calendar.min.css",
+              "projects/ngx-tui-calendar/src/lib/tui-calendar/dist/tui-calendar.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [

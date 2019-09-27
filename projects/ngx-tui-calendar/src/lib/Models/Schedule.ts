@@ -22,4 +22,6 @@ export interface Schedule {
   customStyle?: string
   raw?: any
   summary: string;
+  plannedStartDate: string;
+  plannedEndDate: string;
 }

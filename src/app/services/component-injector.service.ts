@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { ScheduleViewComponent } from '../components/schedule-view/schedule-view.component';
-import { ScheduleDiscription } from '../models/ScheduleDiscription.model';
+
 import { Schedule } from '../../../projects/ngx-tui-calendar/src/lib/Models/Schedule';
 
 
@@ -26,7 +26,7 @@ export class ComponentInjectorService {
   
     createSchduleViewComponent<T>(
         componentType: Type<T>,
-        schedule?:ScheduleDiscription,
+        schedule?:Schedule,
         location?: HTMLElement | ViewContainerRef,
         injector?: Injector): ComponentRef<T> {
   
@@ -44,7 +44,7 @@ export class ComponentInjectorService {
   
         this.addComponentToDom(location as HTMLElement || document.body, componentRef);
     
-      console.log(componentRef);
+      
       return componentRef;
     }
 
